@@ -16,13 +16,36 @@
  *   You should have received a copy of the GNU Lesser General Public
  *   License along with camera-wagon.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 // Used to toggle the menu on small screens when clicking on the menu button
 function toggleMenu() {
-    var x = document.getElementById("navMobile");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else {
-        x.className = x.className.replace(" w3-show", "");
-    }
+  var x = document.getElementById("navMobile");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+// Shutdown the Raspberry Pi
+function shutdown() {
+  XHTTP("http://localhost:3000/shutdown");
+}
+
+// Capture a video
+function record() {
+  XHTTP("http://localhost:3000/record");
+}
+
+// Helper functions
+function XHTTP(url) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var reply = JSON.parse(this.responseText);
+        alert(reply.command + ":" + reply.status);
+      }
+  };
+  xhttp.open("GET", url, true);
+  xhttp.send();
 }

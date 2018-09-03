@@ -22,7 +22,7 @@ body, html {
 }
 
 .bgimg {
-    background-image: url('http://192.168.0.135:8080/stream/video.mjpeg');
+    background-image: url('http://localhost:8080/stream/video.mjpeg');
     min-height: 100%;
     background-position: center;
     background-size: cover;
