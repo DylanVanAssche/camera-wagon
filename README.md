@@ -1,2 +1,2 @@
 # camera-wagon
-Livestream from your modelrailroad using a Raspberry Pi
+Livestream from your model railroad using a Raspberry Pi
