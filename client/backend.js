@@ -26,26 +26,3 @@ function toggleMenu() {
     x.className = x.className.replace(" w3-show", "");
   }
 }
-
-// Shutdown the Raspberry Pi
-function shutdown() {
-  XHTTP("http://localhost:3000/shutdown");
-}
-
-// Capture a video
-function record() {
-  XHTTP("http://localhost:3000/record");
-}
-
-// Helper functions
-function XHTTP(url) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var reply = JSON.parse(this.responseText);
-        alert(reply.command + ":" + reply.status);
-      }
-  };
-  xhttp.open("GET", url, true);
-  xhttp.send();
-}

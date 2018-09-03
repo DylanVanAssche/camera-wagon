@@ -27,7 +27,7 @@ exports.shutdown = function(req, res) {
   res.json(result);
 };
 
-exports.captureVideo = function(req, res) {
+exports.record = function(req, res) {
   /*
    * Record a video (async)
    * nopreview: skip nopreview
@@ -52,31 +52,6 @@ exports.captureVideo = function(req, res) {
     + " --timeout " + timeout
     + " --output /home/pi/videos/video_" + timestamp + ".h264",
     false
-  );
-  res.json(result);
-};
-
-exports.takePicture = function(req, res) {
-  /*
-   * Take a picture
-   * nopreview: skip nopreview
-   * timeout 1: skip 5 seconds preview time
-   * shutter 2500: avoid blurred object when moving
-   * width 1280, height 960: picture size in pixels
-   * quality 75: 75 % JPEG quality
-   * output screenshot.jpg: Save the picture in /home/pi/picture_TIMESTAMP.jpg
-   */
-  let timestamp = currentTimestamp();
-  let shutterspeed = 2500;
-  let width = 1280;
-  let height = 960;
-  let quality = 75;
-  let result = executeCommand(
-    "raspistill --nopreview --timeout 1 --shutter " + shutterspeed
-    + " --width " + width
-    + " --height " + height
-    + " --quality " + quality
-    + " --output /home/pi/pictures/picture_" + timestamp + ".jpg"
   );
   res.json(result);
 };

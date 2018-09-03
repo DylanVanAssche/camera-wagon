@@ -21,6 +21,5 @@ let controller = require("./controller.js");
 module.exports = function(app) {
   // Export all our routes for Express
   app.route("/shutdown").get(controller.shutdown);
-  app.route("/capture/video").get(controller.captureVideo);
-  app.route("/capture/picture").get(controller.takePicture);
+  app.route("/record").get(controller.record);
 };

@@ -37,16 +37,12 @@
         </button>
         <div class="w3-bar-item w3-padding-large w3-hide-medium w3-hide-large">Camera wagon LIVESTREAM</div>
         <div class="w3-bar-item w3-padding-large w3-hide-medium w3-hide-small w3-right">Camera wagon LIVESTREAM</div>
-        <button class="w3-bar-item w3-button w3-padding-large w3-hide-small" onclick="record();"><i class="fas fa-video"></i> RECORD</button>
         <a class="w3-bar-item w3-button w3-padding-large w3-hide-small" href="http://localhost:8080/stream/snapshot.jpeg" download="snapshot.jpeg"><i class="fas fa-camera"></i> TAKE SNAPSHOT</a>
-        <button class="w3-bar-item w3-button w3-padding-large w3-hide-small" onclick="shutdown();"><i class="fas fa-power-off"></i> POWER OFF</button>
       </div>
     </div>
     <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
     <div id="navMobile" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-      <button class="w3-bar-item w3-button w3-padding-large" onclick="toggleMenu(); record();"><i class="fas fa-video"></i> RECORD</button>
       <a class="w3-bar-item w3-button w3-padding-large" href="http://localhost:8080/stream/snapshot.jpeg" download="snapshot.jpeg" onclick="toggleMenu();"><i class="fas fa-camera"></i> TAKE SNAPSHOT</a>
-      <button class="w3-bar-item w3-button w3-padding-large" onclick="toggleMenu(); shutdown();"><i class="fas fa-power-off"></i> POWER OFF</button>
     </div>
     <div class="w3-display-bottomright w3-padding-large">
       &copy; <a href="https://www.dylanvanassche.be">Dylan Van Assche</a> (2018)
