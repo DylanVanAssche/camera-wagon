@@ -29,16 +29,30 @@ exports.shutdown = function(req, res) {
 
 exports.captureVideo = function(req, res) {
   /*
-   * Record a video
+   * Record a video (async)
    * nopreview: skip nopreview
    * timeout 1: skip 5 seconds preview time
    * shutter 2500: avoid blurred object when moving
    * width 1280, height 960: video size in pixels
    * framerate 30: 30 FPS
    * timeout 10000: The length of the video in ms (10 seconds)
-   * output screenshot.jpg: Save the picture in /home/pi/video.h264
+   * output screenshot.jpg: Save the picture in /home/pi/video_TIMESTAMP.h264
    */
-  let result = executeCommand("raspivid --nopreview --shutter 2500 --width 1280 --height 960 --framerate 30 --timeout 10000 --output /home/pi/video.h264");
+  let timestamp = currentTimestamp();
+  let shutterspeed = 2500;
+  let width = 1280;
+  let height = 960;
+  let fps = 30;
+  let timeout = 10000;
+  let result = executeCommand(
+    "raspivid --nopreview --shutter " + shutterspeed
+    + " --width " + width
+    + " --height " + height
+    + " --framerate " + fps
+    + " --timeout " + timeout
+    + " --output /home/pi/videos/video_" + timestamp + ".h264",
+    false
+  );
   res.json(result);
 };
 
@@ -50,21 +64,37 @@ exports.takePicture = function(req, res) {
    * shutter 2500: avoid blurred object when moving
    * width 1280, height 960: picture size in pixels
    * quality 75: 75 % JPEG quality
-   * output screenshot.jpg: Save the picture in /home/pi/screenshot.jpg
+   * output screenshot.jpg: Save the picture in /home/pi/picture_TIMESTAMP.jpg
    */
-  let result = executeCommand("raspistill --nopreview --timeout 1 --shutter 2500 --width 1280 --height 960 --quality 75 --output /home/pi/screenshot.jpg");
+  let timestamp = currentTimestamp();
+  let shutterspeed = 2500;
+  let width = 1280;
+  let height = 960;
+  let quality = 75;
+  let result = executeCommand(
+    "raspistill --nopreview --timeout 1 --shutter " + shutterspeed
+    + " --width " + width
+    + " --height " + height
+    + " --quality " + quality
+    + " --output /home/pi/pictures/picture_" + timestamp + ".jpg"
+  );
   res.json(result);
 };
 
-// Helper function
-function executeCommand(cmd) {
+// Helper functions
+function executeCommand(cmd, sync = true) {
   // Execute a shell command on the Pi
-  let result = shell.exec(cmd, {shell: "/bin/bash"});
-  let status = "failed";
+  let result = shell.exec(cmd, {shell: "/bin/bash", async: !sync});
+  if(sync) {
+    let status = "failed";
 
-  // Check if the command was succesfull
-  if(result.code === 0) {
-    status = "success";
+    // Check if the command was succesfull
+    if(result.code === 0) {
+      status = "success";
+    }
+  }
+  else {
+    status = "asynchronous";
   }
 
   // Return the JSON reply
@@ -72,4 +102,14 @@ function executeCommand(cmd) {
     "command": cmd,
     "status": status
   };
+
+}
+
+function currentTimestamp() {
+  // Get the current time and date and return it as a string
+  let d = new Date();
+  let time = "" + d.getHours() + d.getMinutes() + d.getSeconds();
+  let date = "" + d.getDate() + (d.getMonth()+1) + d.getFullYear();
+
+  return date + "-" + time;
 }
