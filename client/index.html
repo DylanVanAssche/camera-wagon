@@ -1,0 +1,52 @@
+<!--
+/*
+ * Copyright (C) 2018 by Dylan Van Assche
+ *
+ * This file is part of camera-wagon.
+ *
+ *   camera-wagon is free software: you can redistribute it and/or modify it
+ *   under the terms of the GNU Lesser General Public License as published
+ *   by the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   camera-wagon is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU Lesser General Public License for more details.
+ *
+ *   You should have received a copy of the GNU Lesser General Public
+ *   License along with camera-wagon.  If not, see <http://www.gnu.org/licenses/>.
+ */
+-->
+<!DOCTYPE html>
+<html>
+  <title>Camera wagon stream</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  <link rel="stylesheet" href="stylesheet.css">
+  <script src="backend.js"></script>
+  <body>
+  <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+    <!-- Navbar -->
+    <div class="w3-top">
+      <div class="w3-bar w3-black w3-card">
+        <button class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="toggleMenu()" title="Toggle navigation menu">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="w3-bar-item w3-padding-large w3-hide-medium w3-hide-large">Camera wagon LIVESTREAM</div>
+        <div class="w3-bar-item w3-padding-large w3-hide-medium w3-hide-small w3-right">Camera wagon LIVESTREAM</div>
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-small" href="http://192.168.0.135:8080/stream/snapshot.jpeg" download="snapshot.jpeg"><i class="fas fa-camera"></i> TAKE SNAPSHOT</a>
+      </div>
+    </div>
+    <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+    <div id="navMobile" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+      <a class="w3-bar-item w3-button w3-padding-large" href="http://192.168.0.135:8080/stream/snapshot.jpeg" download="snapshot.jpeg" onclick="toggleMenu();"><i class="fas fa-camera"></i> TAKE SNAPSHOT</a>
+    </div>
+    <div class="w3-display-bottomright w3-padding-large">
+      &copy; <a href="https://www.dylanvanassche.be">Dylan Van Assche</a> (2018)
+    </div>
+  </div>
+  </body>
+</html>
